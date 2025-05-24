@@ -8,4 +8,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'redux-learning';
+
+  contador: number;
+
+  constructor() {
+    this.contador = 10;
+  }
+
+  // Funciones 
+
+  incrementar() {
+    this.contador += 1;    
+  }
+
+  reducir() {
+    this.contador -= 1;
+  }
 }
