@@ -19,4 +19,9 @@ export class HijoComponent {
     this.contador /= 2;
     this.cambioContador.emit(this.contador);
   }
+
+  resetNieto($event: number) {
+    this.contador = 0;
+    this.cambioContador.emit(this.contador);
+  }
 }
