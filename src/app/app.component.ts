@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as actions from './contador/contador.actions';
+
+interface AppState {
+  contador: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -9,19 +15,22 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'redux-learning';
 
-  contador: number;
+  contador!: number;
 
-  constructor() {
-    this.contador = 10;
+  constructor( private store: Store<AppState>) {
+    this.store.subscribe( state => {
+      console.log('Estado actualizado:', state);
+      this.contador = state.contador;
+    })
   }
 
   // Funciones 
 
-  incrementar() {
-    this.contador += 1;    
+  incrementar() { 
+    this.store.dispatch( actions.incrementar() )
   }
 
   reducir() {
-    this.contador -= 1;
+    this.store.dispatch( actions.reducir() )
   }
 }
